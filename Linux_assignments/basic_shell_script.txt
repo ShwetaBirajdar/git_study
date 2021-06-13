@@ -1,0 +1,57 @@
+1)
+$ vim test1.sh
+
+#!/bin/sh
+echo "File Name: $0"
+echo "First Parameter : $1"
+echo "Second Parameter : $2"
+echo "Quoted Values: $@"
+echo "Quoted Values: $*"
+echo "Total Number of Parameters : $#"
+
+$ ./test1.sh shweta birajdar 10
+-bash: ./test1.sh: Permission denied
+
+$ chmod  +x test1.sh
+
+$ ls
+test1.sh  test1.txt
+
+$ ./test1.sh shweta birajdar 10
+File Name: ./test1.sh
+First Parameter : shweta
+Second Parameter : birajdar
+Quoted Values: shweta birajdar 10
+Quoted Values: shweta birajdar 10
+Total Number of Parameters : 3
+
+2) vim test2.sh
+#!/bin/sh
+
+for TOKEN in $*
+do
+   echo $TOKEN
+done
+                                                                                            
+
+$ chmod +x ./test2.sh
+$ ./test2.sh shweta birajdar 10 solapur maharastra
+shweta
+birajdar
+10
+solapur
+maharastra
+
+3) 
+$ vi test3.sh
+NAME[0]="Shweta"
+NAME[1]="Shivanand"
+NAME[2]="Birajdar"
+NAME[3]="10"
+NAME[4]="12"
+echo "First Method: ${NAME[*]}"
+echo "Second Method: ${NAME[@]}"
+                                                                                      
+$ ./test3.sh
+First Method: Shweta Shivanand Birajdar 10 12
+Second Method: Shweta Shivanand Birajdar 10 12
